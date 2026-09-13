@@ -540,6 +540,7 @@ export default function AuthPage({ mode = "login" }) {
           </div>
         </div>
       </div>
+      </div>
     </main>
   );
 }
