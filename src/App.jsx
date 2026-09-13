@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import AuthPage from './pages/auth/AuthPage';
 import ModelProfile from './pages/ModelProfile';
@@ -11,10 +11,6 @@ import AdminMessages from './pages/admin/AdminMessages';
 import Payment from './pages/Payment';
 
 function App() {
-
-  const { logout } = useAuth();
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   const ProtectedRoute = ({ children, requiredRole }) => {
     const { user, isAuthenticated, loading } = useAuth();
@@ -45,7 +41,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(244,114,182,0.18),_transparent_30%),linear-gradient(135deg,#fffafc_0%,#fdf3ff_40%,#f6efff_100%)] text-[#2f1634]">
-      <main className={isHomePage ? 'w-full px-0 py-0' : 'mx-auto max-w-7xl px-0 py-0'}>
+      <main className="mx-auto max-w-7xl px-0 py-0">
       <Routes>
         <Route path="/model/:username" element={<ModelProfile />} />
         <Route path="/login" element={<AuthPage mode="login" />} />
