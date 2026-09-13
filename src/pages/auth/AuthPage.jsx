@@ -127,8 +127,6 @@ export default function AuthPage({ mode = "login" }) {
     register: {
       eyebrow: "Create your account",
       title: "Your story begins here.",
-      description:
-        "Create your private account and discover a beautiful space designed around connection and creativity.",
       button: "Create account",
       panelEyebrow: "Begin your journey",
       panelTitle: "Step into something beautiful.",
@@ -137,8 +135,6 @@ export default function AuthPage({ mode = "login" }) {
     "admin-login": {
       eyebrow: "Private studio",
       title: "Welcome back.",
-      description:
-        "Sign in to your private studio and manage your profile, portfolio and client experience.",
       button: "Access dashboard",
       panelEyebrow: "Model studio",
       panelTitle: "Beauty, vision & every detail.",
@@ -147,8 +143,6 @@ export default function AuthPage({ mode = "login" }) {
     login: {
       eyebrow: "Welcome back",
       title: "Lovely to see you.",
-      description:
-        "Sign in to continue your journey and stay connected with everything that matters to you.",
       button: "Sign in",
       panelEyebrow: "Private access",
       panelTitle: "A beautiful space, made for connection.",
@@ -206,33 +200,6 @@ export default function AuthPage({ mode = "login" }) {
             {/* Soft light */}
 
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.4),transparent_25%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.2),transparent_30%)]" />
-
-            {/* =========================
-                BRAND
-            ========================== */}
-
-            <div className="absolute left-8 right-8 top-7 z-10 flex items-center justify-between">
-
-              <Link
-                to="/"
-                className="font-serif text-xl tracking-[0.25em] text-white"
-              >
-                ASTER
-              </Link>
-
-              <div className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 backdrop-blur-md">
-
-                <Heart
-                  size={10}
-                  className="fill-white text-white"
-                />
-
-                <span className="text-[7px] uppercase tracking-[0.2em] text-white/90">
-                  Since 2026
-                </span>
-
-              </div>
-            </div>
 
             {/* =========================
                 CENTER ART
@@ -296,18 +263,6 @@ export default function AuthPage({ mode = "login" }) {
                 {content.panelTitle}
               </h1>
 
-              <div className="mt-5 flex items-center gap-3">
-
-                <div className="h-px w-9 bg-white/50" />
-
-                <p className="text-[7px] uppercase tracking-[0.3em] text-white/70">
-                  ASTER · Lagos
-                </p>
-
-              </div>
-
-            </div>
-
             {/* Side label */}
 
             <p className="absolute right-5 top-1/2 -translate-y-1/2 rotate-180 text-[7px] uppercase tracking-[0.3em] text-white/45 [writing-mode:vertical-rl]">
@@ -320,16 +275,7 @@ export default function AuthPage({ mode = "login" }) {
               RIGHT FORM PANEL
           ====================================================== */}
 
-          <div className="relative flex h-full items-center justify-center overflow-y-auto bg-white/55 px-5 py-8 sm:px-8 lg:px-12 xl:px-16">
-
-            {/* Mobile brand */}
-
-            <Link
-              to="/"
-              className="absolute left-6 top-5 font-serif text-lg tracking-[0.2em] text-[#a34f7a] lg:hidden"
-            >
-              ASTER
-            </Link>
+          <div className="relative flex h-full items-center justify-center overflow-y-auto scrollbar-thin scrollbar-thumb-pink-300 scrollbar-track-transparent bg-white/55 px-5 py-8 sm:px-8 lg:px-12 xl:px-16">
 
             {/* Decorative dots */}
 
@@ -414,10 +360,6 @@ export default function AuthPage({ mode = "login" }) {
                   {content.title}
                 </h2>
 
-                <p className="mt-3 max-w-sm text-xs leading-5 text-[#8e657c]">
-                  {content.description}
-                </p>
-
               </div>
 
               {/* =========================
@@ -451,7 +393,7 @@ export default function AuthPage({ mode = "login" }) {
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
-                    placeholder="08012345678"
+                    placeholder="+1 (555) 123-4567"
                   />
                 )}
 
