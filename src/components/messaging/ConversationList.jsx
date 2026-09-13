@@ -11,13 +11,13 @@ export default function ConversationList({
 }) {
   if (!conversations.length) {
     return (
-      <aside className="flex h-full flex-col bg-white">
-        <div className="border-b border-[#e8e3e9] px-4 py-4">
-          <p className="text-[8px] font-medium uppercase tracking-[0.2em] text-[#a098a8]">
+      <aside className="flex h-full flex-col bg-neutral-900">
+        <div className="border-b border-white/20 px-4 py-4">
+          <p className="text-[8px] font-medium uppercase tracking-[0.2em] text-pink-200">
             Inbox
           </p>
 
-          <h2 className="mt-1 text-lg font-semibold text-[#302a34]">
+          <h2 className="mt-1 text-lg font-semibold text-pink-100">
             Messages
           </h2>
         </div>
@@ -33,20 +33,20 @@ export default function ConversationList({
   }
 
   return (
-    <aside className="flex h-full min-h-[280px] flex-col bg-white">
-      <div className="shrink-0 border-b border-[#e8e3e9] px-4 py-4">
+    <aside className="flex h-full min-h-[280px] flex-col bg-neutral-900">
+      <div className="shrink-0 border-b border-white/20 px-4 py-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[8px] font-medium uppercase tracking-[0.2em] text-[#a098a8]">
+            <p className="text-[8px] font-medium uppercase tracking-[0.2em] text-pink-200">
               Private inbox
             </p>
 
-            <h2 className="mt-1 text-lg font-semibold leading-none text-[#302a34]">
+            <h2 className="mt-1 text-lg font-semibold leading-none text-pink-100">
               Messages
             </h2>
           </div>
 
-          <span className="flex h-7 min-w-7 items-center justify-center border border-[#e4dfe7] bg-[#faf8fb] px-2 text-[9px] text-[#756d7b]">
+          <span className="flex h-7 min-w-7 items-center justify-center border border-pink-500/30 bg-pink-500/20 px-2 text-[9px] text-pink-500">
             {conversations.length}
           </span>
         </div>
@@ -84,9 +84,9 @@ export default function ConversationList({
         })}
       </div>
 
-      <div className="hidden shrink-0 border-t border-[#e8e3e9] px-4 py-3 xl:block">
-        <p className="text-[8px] uppercase tracking-[0.2em] text-[#a098a8]">
-          ASTER / Private Clients
+      <div className="hidden shrink-0 border-t border-white/20 px-4 py-3 xl:block">
+        <p className="text-[8px] uppercase tracking-[0.2em] text-pink-200">
+          Private Clients
         </p>
       </div>
     </aside>

@@ -33,16 +33,16 @@ export default function ConversationItem({
     <button
       type="button"
       onClick={onSelect}
-      className={`group relative flex w-full items-center gap-3 border-b border-[#eee9ef] px-4 py-3.5 text-left transition ${
+      className={`group relative flex w-full items-center gap-3 border-b border-white/20 px-4 py-3.5 text-left transition ${
         active
-          ? 'bg-[#f6f0f9]'
-          : 'bg-white hover:bg-[#faf8fb]'
+          ? 'bg-pink-500/20 hover:bg-pink-500/30'
+          : 'bg-neutral-800 hover:bg-neutral-700'
       }`}
     >
       <span
         className={`absolute bottom-0 left-0 top-0 w-[3px] transition ${
           active
-            ? 'bg-[#8562a3]'
+            ? 'bg-pink-500'
             : 'bg-transparent'
         }`}
       />
@@ -51,8 +51,8 @@ export default function ConversationItem({
         <div
           className={`flex h-11 w-11 items-center justify-center rounded-full border text-sm font-semibold transition ${
             active
-              ? 'border-[#d8c9df] bg-[#f4ecf7] text-[#76538f]'
-              : 'border-[#e4dfe7] bg-[#faf8fb] text-[#776d7c]'
+              ? 'border-pink-500/20 bg-pink-500/10 text-pink-500/80'
+              : 'border-white/20 bg-neutral-700 text-white/80'
           }`}
         >
           {initials}
@@ -68,14 +68,14 @@ export default function ConversationItem({
           <p
             className={`truncate text-[13px] font-semibold ${
               active
-                ? 'text-[#302a34]'
-                : 'text-[#403844]'
+                ? 'text-pink-500'
+                : 'text-white/80'
             }`}
           >
-            {peer?.name || 'ASTER'}
+            {peer?.name}
           </p>
 
-          <span className="shrink-0 text-[9px] text-[#a099a5]">
+          <span className="shrink-0 text-[9px] text-white/50">
             {conversation.lastMessageAt
               ? formatConversationStamp(
                   conversation.lastMessageAt
@@ -88,8 +88,8 @@ export default function ConversationItem({
           <p
             className={`truncate text-[11px] leading-5 ${
               unreadCount > 0
-                ? 'font-medium text-[#5c4669]'
-                : 'text-[#918994]'
+                ? 'font-medium text-pink-500'
+                : 'text-white/50'
             }`}
           >
             {lastMessage}

@@ -109,60 +109,24 @@ export default function AdminMessages() {
   };
 
   return (
-    <main className="min-h-screen bg-[#2d1634]/75 px-2 py-2 sm:px-4 sm:py-4 lg:px-6 lg:py-6">
-      {/* Top bar */}
-      <div className="mx-auto mb-4 flex w-full max-w-[1350px] items-center justify-between px-1">
-        <div>
-          <p className="text-[9px] font-medium uppercase tracking-[0.24em] text-[#a098a8]">
-            Private inbox
-          </p>
-
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-[#29242d]">
-            Messages
-          </h1>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <div className="hidden items-center gap-2 sm:flex">
-            <span
-              className={`h-2 w-2 rounded-full ${
-                socketConnected ? 'bg-emerald-500' : 'bg-amber-400'
-              }`}
-            />
-
-            <span className="text-[10px] text-[#8f8794]">
-              {socketConnected ? 'Connected' : 'Connecting'}
-            </span>
-          </div>
-
-          <button
-            type="button"
-            onClick={logout}
-            className="inline-flex items-center gap-2 border border-[#e6e0e8] bg-white px-3 py-2 text-[10px] font-medium uppercase tracking-[0.1em] text-[#625b68] transition hover:border-[#cdbddc] hover:text-[#6f548c]"
-          >
-            <LogOut className="h-3.5 w-3.5" strokeWidth={1.7} />
-            <span>Logout</span>
-          </button>
-        </div>
-      </div>
-
+    <main className="min-h-screen bg-[#805495]">
       {/* Messaging app */}
-      <section className="mx-auto flex h-[calc(100vh-7rem)] min-h-[560px] w-full max-w-[1350px] overflow-hidden border border-[#e5e0e7] bg-white shadow-[0_12px_45px_rgba(54,42,62,0.06)]">
+      <section className="mx-auto flex h-screen min-h-[560px] w-screen max-w-[1350px] overflow-hidden border border-[#e5e0e7] bg-white shadow-[0_12px_45px_rgba(54,42,62,0.06)]">
         {/* Conversation sidebar */}
-        <aside className="hidden w-[300px] shrink-0 border-r border-[#e5e0e7] bg-white lg:flex lg:flex-col xl:w-[340px]">
-          <div className="border-b border-[#e8e3e9] px-5 py-4">
+        <aside className="hidden w-[300px] shrink-0 border-r border-white/20 bg-neutral-900 lg:flex lg:flex-col xl:w-[340px]">
+          <div className="border-b border-white/20 px-5 py-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-[#a098a8]">
+                <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-pink-200">
                   Inbox
                 </p>
 
-                <h2 className="mt-1 text-lg font-semibold text-[#302a34]">
+                <h2 className="mt-1 text-lg font-semibold text-pink-100">
                   Clients
                 </h2>
               </div>
 
-              <span className="flex h-7 min-w-7 items-center justify-center border border-[#e4dfe7] bg-[#faf8fb] px-2 text-[10px] text-[#756d7b]">
+              <span className="flex h-7 min-w-7 items-center justify-center border border-pink-500/30 bg-pink-500/20 px-2 text-[10px] text-pink-500">
                 {conversations.length}
               </span>
             </div>
