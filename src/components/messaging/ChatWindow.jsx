@@ -37,7 +37,7 @@ export default function ChatWindow({
   }
 
   return (
-    <div className="flex h-full flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-[#211c25] scrollbar-track-[#805495] bg-neutral-800 px-3 py-5 sm:px-5">
+    <div className="flex h-full flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-pink-800 scrollbar-track-transparent bg-neutral-800 px-3 py-5 sm:px-5">
 
       {/* SOFT BACKGROUND ACCENTS */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
