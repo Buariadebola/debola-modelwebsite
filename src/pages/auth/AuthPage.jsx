@@ -127,6 +127,8 @@ export default function AuthPage({ mode = "login" }) {
     register: {
       eyebrow: "Create your account",
       title: "Your story begins here.",
+      description:
+        "Create your private account and discover a beautiful space designed around connection and creativity.",
       button: "Create account",
       panelEyebrow: "Begin your journey",
       panelTitle: "Step into something beautiful.",
@@ -135,6 +137,8 @@ export default function AuthPage({ mode = "login" }) {
     "admin-login": {
       eyebrow: "Private studio",
       title: "Welcome back.",
+      description:
+        "Sign in to your private studio and manage your profile, portfolio and client experience.",
       button: "Access dashboard",
       panelEyebrow: "Model studio",
       panelTitle: "Beauty, vision & every detail.",
@@ -143,6 +147,8 @@ export default function AuthPage({ mode = "login" }) {
     login: {
       eyebrow: "Welcome back",
       title: "Lovely to see you.",
+      description:
+        "Sign in to continue your journey and stay connected with everything that matters to you.",
       button: "Sign in",
       panelEyebrow: "Private access",
       panelTitle: "A beautiful space, made for connection.",
@@ -263,6 +269,14 @@ export default function AuthPage({ mode = "login" }) {
                 {content.panelTitle}
               </h1>
 
+              <div className="mt-5 flex items-center gap-3">
+
+                <div className="h-px w-9 bg-white/50" />
+
+              </div>
+
+            </div>
+
             {/* Side label */}
 
             <p className="absolute right-5 top-1/2 -translate-y-1/2 rotate-180 text-[7px] uppercase tracking-[0.3em] text-white/45 [writing-mode:vertical-rl]">
@@ -275,7 +289,16 @@ export default function AuthPage({ mode = "login" }) {
               RIGHT FORM PANEL
           ====================================================== */}
 
-          <div className="relative flex h-full items-center justify-center overflow-y-auto scrollbar-thin scrollbar-thumb-pink-300 scrollbar-track-transparent bg-white/55 px-5 py-8 sm:px-8 lg:px-12 xl:px-16">
+          <div className="relative flex h-full items-center justify-center overflow-y-auto bg-white/55 px-5 py-8 sm:px-8 lg:px-12 xl:px-16">
+
+            {/* Mobile brand */}
+
+            <Link
+              to="/"
+              className="absolute left-6 top-5 font-serif text-lg tracking-[0.2em] text-[#a34f7a] lg:hidden"
+            >
+              ASTER
+            </Link>
 
             {/* Decorative dots */}
 
@@ -360,6 +383,10 @@ export default function AuthPage({ mode = "login" }) {
                   {content.title}
                 </h2>
 
+                <p className="mt-3 max-w-sm text-xs leading-5 text-[#8e657c]">
+                  {content.description}
+                </p>
+
               </div>
 
               {/* =========================
@@ -393,7 +420,7 @@ export default function AuthPage({ mode = "login" }) {
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
-                    placeholder="+1 (555) 123-4567"
+                    placeholder="08012345678"
                   />
                 )}
 
@@ -539,7 +566,6 @@ export default function AuthPage({ mode = "login" }) {
 
           </div>
         </div>
-      </div>
       </div>
     </main>
   );
