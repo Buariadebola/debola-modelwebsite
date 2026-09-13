@@ -232,16 +232,6 @@ export default function AdminMessages() {
           )}
         </div>
       </section>
-
-      <div className="mx-auto mt-3 flex w-full max-w-[1350px] justify-between px-1">
-        <p className="text-[8px] uppercase tracking-[0.2em] text-[#a29aa7]">
-          ASTER / PRIVATE CLIENTS
-        </p>
-
-        <p className="hidden text-[8px] uppercase tracking-[0.2em] text-[#a29aa7] sm:block">
-          Confidential correspondence
-        </p>
-      </div>
     </main>
   );
 }
