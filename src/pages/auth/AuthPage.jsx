@@ -127,8 +127,6 @@ export default function AuthPage({ mode = "login" }) {
     register: {
       eyebrow: "Create your account",
       title: "Your story begins here.",
-      description:
-        "Create your private account and discover a beautiful space designed around connection and creativity.",
       button: "Create account",
       panelEyebrow: "Begin your journey",
       panelTitle: "Step into something beautiful.",
@@ -137,8 +135,6 @@ export default function AuthPage({ mode = "login" }) {
     "admin-login": {
       eyebrow: "Private studio",
       title: "Welcome back.",
-      description:
-        "Sign in to your private studio and manage your profile, portfolio and client experience.",
       button: "Access dashboard",
       panelEyebrow: "Model studio",
       panelTitle: "Beauty, vision & every detail.",
@@ -147,8 +143,6 @@ export default function AuthPage({ mode = "login" }) {
     login: {
       eyebrow: "Welcome back",
       title: "Lovely to see you.",
-      description:
-        "Sign in to continue your journey and stay connected with everything that matters to you.",
       button: "Sign in",
       panelEyebrow: "Private access",
       panelTitle: "A beautiful space, made for connection.",
@@ -289,16 +283,7 @@ export default function AuthPage({ mode = "login" }) {
               RIGHT FORM PANEL
           ====================================================== */}
 
-          <div className="relative flex h-full items-center justify-center overflow-y-auto bg-white/55 px-5 py-8 sm:px-8 lg:px-12 xl:px-16">
-
-            {/* Mobile brand */}
-
-            <Link
-              to="/"
-              className="absolute left-6 top-5 font-serif text-lg tracking-[0.2em] text-[#a34f7a] lg:hidden"
-            >
-              ASTER
-            </Link>
+          <div className="relative flex h-full items-center justify-center overflow-y-auto scrollbar-none bg-white/55 px-5 py-8 sm:px-8 lg:px-12 xl:px-16">
 
             {/* Decorative dots */}
 
@@ -382,10 +367,6 @@ export default function AuthPage({ mode = "login" }) {
                 <h2 className="font-serif text-3xl leading-none tracking-tight text-[#48233d] sm:text-4xl">
                   {content.title}
                 </h2>
-
-                <p className="mt-3 max-w-sm text-xs leading-5 text-[#8e657c]">
-                  {content.description}
-                </p>
 
               </div>
 
