@@ -60,11 +60,11 @@ export default function AdminMessages() {
 
   if (authLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f7f5f8]">
+      <div className="flex min-h-screen items-center justify-center bg-neutral-800">
         <div className="flex flex-col items-center gap-3">
-          <Loader2 className="h-5 w-5 animate-spin text-[#8064a2]" />
+          <Loader2 className="h-5 w-5 animate-spin text-pink-500" />
 
-          <p className="text-[10px] uppercase tracking-[0.2em] text-[#9d96a3]">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/70">
             Loading
           </p>
         </div>
