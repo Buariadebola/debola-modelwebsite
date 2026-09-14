@@ -9,6 +9,7 @@ import AdminModelProfile from './pages/admin/AdminModelProfile';
 import ClientMessages from './pages/client/ClientMessages';
 import AdminMessages from './pages/admin/AdminMessages';
 import Payment from './pages/Payment';
+import NotFound from './pages/NotFound';
 
 function App() {
 
