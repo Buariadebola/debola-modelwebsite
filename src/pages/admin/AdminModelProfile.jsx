@@ -15,6 +15,7 @@ const normalizeModel = (model = {}) => {
     _id: model._id || model.id,
     username: model.username || '',
     name: model.name || '',
+    isDefault: Boolean(model.isDefault),
     profileImage: model.profileImage || '',
     location: model.location || '',
     bio: model.bio || '',
@@ -36,6 +37,7 @@ export default function AdminModelProfile() {
     addPost,
     updatePost,
     deletePost,
+    setDefaultModel,
   } = useModels();
 
   const profileInputRef = useRef(null);
@@ -216,13 +218,46 @@ export default function AdminModelProfile() {
                   <p className="mt-1 text-[#8f6888]">@{currentModel.username}</p>
                 </div>
 
-                <button
-                  onClick={() => setEditProfile(true)}
-                  className="flex items-center justify-center gap-2 rounded-xl border border-[#f0dff1] bg-[#fff7fb] px-5 py-2.5 text-[#5a3658] transition hover:bg-[#fff1fa]"
-                >
-                  <Edit3 size={17} />
-                  Edit Profile
-                </button>
+                <div className="flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    disabled={currentModel.isDefault}
+                    onClick={async () => {
+                      try {
+                        await setDefaultModel(currentModel.id);
+
+                        setModel((prev) =>
+                          prev
+                            ? {
+                                ...prev,
+                                isDefault: true,
+                              }
+                            : prev
+                        );
+                      } catch (error) {
+                        console.error('Failed to set default model:', error);
+                      }
+                    }}
+                    className={`rounded-xl px-5 py-2.5 font-medium transition ${
+                      currentModel.isDefault
+                        ? 'cursor-default bg-emerald-100 text-emerald-700'
+                        : 'bg-[#311a32] text-white hover:bg-[#4a2349]'
+                    }`}
+                  >
+                    {currentModel.isDefault
+                      ? 'Current Default'
+                      : 'Make Default'}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setEditProfile(true)}
+                    className="flex items-center justify-center gap-2 rounded-xl border border-[#f0dff1] bg-[#fff7fb] px-5 py-2.5 text-[#5a3658] transition hover:bg-[#fff1fa]"
+                  >
+                    <Edit3 size={17} />
+                    Edit Profile
+                  </button>
+                </div>
               </div>
 
               <div className="mt-7 flex gap-10">
