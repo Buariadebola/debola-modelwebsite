@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  Navigate,
   Link,
   useNavigate,
   useLocation,
@@ -16,6 +15,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { FaEyeSlash } from "react-icons/fa";
+import { useModels } from "../../context/ModelContext";
 
 const initialState = {
   name: "",
@@ -25,8 +25,9 @@ const initialState = {
 };
 
 export default function AuthPage({ mode = "login" }) {
-  const { user, isAuthenticated, login, register, loading } =
+  const { loading, isAuthenticated, login, register, user } =
     useAuth();
+  const { getDefaultModel } = useModels();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,30 +40,6 @@ export default function AuthPage({ mode = "login" }) {
   const isAdminMode = location.pathname.startsWith("/admin");
   const finalMode = isAdminMode ? "admin-login" : mode;
 
-  useEffect(() => {
-    if (!loading && isAuthenticated && user) {
-      navigate(
-        user.type === "model"
-          ? "/admin"
-          : "/model/amara_j",
-        { replace: true }
-      );
-    }
-  }, [isAuthenticated, loading, navigate, user]);
-
-  if (!loading && isAuthenticated && user) {
-    return (
-      <Navigate
-        to={
-          user.type === "model"
-            ? "/admin"
-            : "/model/amara_j"
-        }
-        replace
-      />
-    );
-  }
-
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -72,32 +49,88 @@ export default function AuthPage({ mode = "login" }) {
     }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+ const handleSubmit = async (event) => {
+      event.preventDefault();
 
-    setSubmitting(true);
-    setError("");
+      setSubmitting(true);
+      setError("");
 
-    try {
-      if (finalMode === "register") {
-        await register(form);
+      try {
+        // =========================
+        // CLIENT REGISTRATION
+        // =========================
+        if (finalMode === "register") {
+          await register(form);
 
-        navigate("/model/amara_j", {
-          replace: true,
-        });
+          const model = await getDefaultModel();
 
-        return;
-      }
+          if (!model) {
+            throw new Error("No active model is available.");
+          }
 
-      if (finalMode === "admin-login") {
+          navigate(`/model/${model.username}`, {
+            replace: true,
+          });
+
+          return;
+        }
+
+        // =========================
+        // ADMIN / MODEL LOGIN
+        // =========================
+        if (finalMode === "admin-login") {
+          await login(
+            {
+              email: form.email,
+              password: form.password,
+            },
+            "model"
+          );
+
+          navigate("/admin", {
+            replace: true,
+          });
+
+          return;
+        }
+
+        // =========================
+        // CLIENT LOGIN
+        // =========================
         await login(
           {
             email: form.email,
             password: form.password,
           },
-          "model"
+          "client"
         );
 
+        const model = await getDefaultModel();
+
+        if (!model) {
+          throw new Error("No active model is available.");
+        }
+
+        navigate(`/model/${model.username}`, {
+          replace: true,
+        });
+      } catch (requestError) {
+        setError(
+          requestError.response?.data?.message ||
+            requestError.message ||
+            "Unable to sign in right now. Please try again."
+        );
+      } finally {
+        setSubmitting(false);
+      }
+    };
+
+    useEffect(() => {
+      if (loading || !isAuthenticated || !user) {
+        return;
+      }
+
+      if (user.type === "model") {
         navigate("/admin", {
           replace: true,
         });
@@ -105,26 +138,32 @@ export default function AuthPage({ mode = "login" }) {
         return;
       }
 
-      await login(
-        {
-          email: form.email,
-          password: form.password,
-        },
-        "client"
-      );
+      const redirectToDefaultModel = async () => {
+        try {
+          const model = await getDefaultModel();
 
-      navigate("/model/amara_j", {
-        replace: true,
-      });
-    } catch (requestError) {
-      setError(
-        requestError.response?.data?.message ||
-          "Unable to sign in right now. Please try again."
-      );
-    } finally {
-      setSubmitting(false);
-    }
-  };
+          if (!model) {
+            setError("No active model is available.");
+            return;
+          }
+
+          navigate(`/model/${model.username}`, {
+            replace: true,
+          });
+        } catch (error) {
+          console.error("Failed to redirect to default model:", error);
+          setError("Unable to load the model profile.");
+        }
+      };
+
+      redirectToDefaultModel();
+    }, [
+      loading,
+      isAuthenticated,
+      user,
+      getDefaultModel,
+      navigate,
+    ]);
 
   const pageContent = {
     register: {

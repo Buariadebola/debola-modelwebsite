@@ -28,13 +28,8 @@ function App() {
       return <Navigate to="/login" replace />;
     }
 
-    if (requiredRole && user?.type !== requiredRole) {
-      return (
-        <Navigate
-          to={user?.type === 'model' ? '/admin' : '/model/:username'}
-          replace
-        />
-      );
+     if (requiredRole && user?.type !== requiredRole) {
+      return <Navigate to="/login" replace />;
     }
 
     return children;

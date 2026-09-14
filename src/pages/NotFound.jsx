@@ -1,15 +1,47 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Home } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useModels } from "../context/ModelContext";
 
 const NotFound = () => {
   const navigate = useNavigate();
+  const { getDefaultModel } = useModels();
+
+  const [modelUsername, setModelUsername] = useState("");
+
+  useEffect(() => {
+    const loadDefaultModel = async () => {
+      try {
+        const model = await getDefaultModel();
+
+        if (model?.username) {
+          setModelUsername(model.username);
+        }
+      } catch (error) {
+        console.error("Failed to load default model:", error);
+      }
+    };
+
+    loadDefaultModel();
+  }, [getDefaultModel]);
+
+  const handleViewProfile = () => {
+    if (!modelUsername) {
+      navigate("/login");
+      return;
+    }
+
+    navigate(`/model/${modelUsername}`);
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#fff8fc] text-[#32152f]">
       {/* Decorative background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-pink-200/30 blur-3xl" />
+
         <div className="absolute -bottom-40 -right-32 h-[30rem] w-[30rem] rounded-full bg-fuchsia-200/30 blur-3xl" />
 
         <motion.div
@@ -62,7 +94,7 @@ const NotFound = () => {
                 duration: 0.8,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="select-none text-[clamp(7rem,25vw,16rem)] font-black leading-[0.75] tracking-[-0.08em] text-transparent bg-clip-text bg-gradient-to-br from-pink-300 via-pink-500 to-fuchsia-500"
+              className="select-none bg-gradient-to-br from-pink-300 via-pink-500 to-fuchsia-500 bg-clip-text text-[clamp(7rem,25vw,16rem)] font-black leading-[0.75] tracking-[-0.08em] text-transparent"
             >
               404
             </motion.h1>
@@ -82,7 +114,10 @@ const NotFound = () => {
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.7 }}
+            transition={{
+              delay: 0.25,
+              duration: 0.7,
+            }}
             className="mx-auto mt-12 max-w-md"
           >
             <h2 className="text-2xl font-semibold tracking-tight text-[#32152f] sm:text-3xl">
@@ -99,10 +134,14 @@ const NotFound = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.7 }}
+            transition={{
+              delay: 0.45,
+              duration: 0.7,
+            }}
             className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
           >
             <button
+              type="button"
               onClick={() => navigate(-1)}
               className="group flex w-full items-center justify-center gap-2 rounded-full border border-pink-200 bg-white px-6 py-3.5 text-sm font-medium text-[#32152f] shadow-sm transition-all duration-300 hover:border-pink-300 hover:bg-pink-50 hover:shadow-md sm:w-auto"
             >
@@ -110,29 +149,37 @@ const NotFound = () => {
                 size={17}
                 className="transition-transform duration-300 group-hover:-translate-x-1"
               />
+
               Go back
             </button>
 
-            <Link
-              to="/model/amara_j"
+            <button
+              type="button"
+              onClick={handleViewProfile}
               className="group flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-fuchsia-500 px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-pink-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-pink-500/30 sm:w-auto"
             >
               <Home size={17} />
+
               View Profile
-            </Link>
+            </button>
           </motion.div>
 
           {/* Bottom detail */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 1 }}
+            transition={{
+              delay: 0.8,
+              duration: 1,
+            }}
             className="mt-16 flex items-center justify-center gap-3"
           >
             <span className="h-px w-10 bg-pink-200" />
+
             <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-pink-300">
               404 / Portfolio
             </span>
+
             <span className="h-px w-10 bg-pink-200" />
           </motion.div>
         </div>

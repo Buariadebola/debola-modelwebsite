@@ -252,6 +252,23 @@ export function ModelProvider({
   const [models, setModels] =
     useState([]);
 
+    const getDefaultModel = async () => {
+  try {
+    const response = await api.get('/models/default');
+
+    const model = response.data?.data?.model;
+
+    if (!model) {
+      return null;
+    }
+
+    return normalizeModel(model);
+  } catch (error) {
+    console.error('Failed to load default model:', error);
+    return null;
+  }
+};
+
   const loadModels = async () => {
   try {
     const response = await api.get('/models');
@@ -448,6 +465,31 @@ export function ModelProvider({
 
     return updated;
   };
+
+
+  const setDefaultModel = async (modelId) => {
+    try {
+      const response = await api.patch(
+        `/admin/models/${modelId}/default`
+      );
+
+      const updatedModel =
+        response.data?.data?.model;
+
+      // Refresh models after changing default
+      await loadModels();
+
+      return updatedModel;
+    } catch (error) {
+      console.error(
+        "Failed to set default model:",
+        error
+      );
+
+      throw error;
+    }
+  };
+
 
   const updateProfileImage =
     async (
@@ -1110,6 +1152,7 @@ export function ModelProvider({
   const value = useMemo(
     () => ({
       models,
+      getDefaultModel,
       getModel,
       fetchModelDetails,
       updateModel,
@@ -1118,6 +1161,7 @@ export function ModelProvider({
       updatePost,
       deletePost,
       loadModels,
+      setDefaultModel,
 
       likePost,
       unlikePost,
