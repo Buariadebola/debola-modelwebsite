@@ -227,8 +227,6 @@ export default function AdminModelProfile() {
 
               <div className="mt-7 flex gap-10">
                 <Stat label="Posts" value={Number(currentModel.postsCount || currentModel.posts?.length || 0)} />
-                <Stat label="Followers" value="12k+" />
-                <Stat label="Following" value="55" />
               </div>
 
               <div className="mt-6">

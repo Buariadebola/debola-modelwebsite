@@ -30,7 +30,7 @@ function App() {
     if (requiredRole && user?.type !== requiredRole) {
       return (
         <Navigate
-          to={user?.type === 'model' ? '/admin' : '/model/amara_j'}
+          to={user?.type === 'model' ? '/admin' : '/model/:username'}
           replace
         />
       );
@@ -102,6 +102,8 @@ function App() {
           }
         />
         <Route path="/payment" element={<Payment />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
       </main>
       </div>
