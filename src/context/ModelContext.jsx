@@ -240,6 +240,9 @@ const normalizeModel = (
 
     isActive:
       model.isActive !== false,
+
+    isDefault:
+      Boolean(model.isDefault),
   };
 };
 
