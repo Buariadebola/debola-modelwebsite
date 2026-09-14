@@ -63,9 +63,15 @@ export default function AdminModelProfile() {
   });
 
   const currentModel = useMemo(
-    () => model || models.find((item) => item.username === username) || null,
-    [model, models, username]
-  );
+      () => {
+        if (model) {
+          return model;
+        }
+
+        return models.find((item) => item.username === username) || null;
+      },
+      [model, models, username]
+    );
 
   useEffect(() => {
     const selectedModel = models.find((item) => item.username === username);
@@ -224,16 +230,20 @@ export default function AdminModelProfile() {
                     disabled={currentModel.isDefault}
                     onClick={async () => {
                       try {
-                        await setDefaultModel(currentModel.id);
+                        const updatedModel = await setDefaultModel(currentModel.id);
 
-                        setModel((prev) =>
-                          prev
-                            ? {
-                                ...prev,
-                                isDefault: true,
-                              }
-                            : prev
-                        );
+                        if (updatedModel) {
+                          setModel(normalizeModel(updatedModel));
+                        } else {
+                          setModel((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  isDefault: true,
+                                }
+                              : prev
+                          );
+                        }
                       } catch (error) {
                         console.error('Failed to set default model:', error);
                       }
