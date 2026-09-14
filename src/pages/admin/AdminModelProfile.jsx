@@ -230,11 +230,23 @@ export default function AdminModelProfile() {
                     disabled={Boolean(currentModel.isDefault)}
                     onClick={async () => {
                       try {
-                        const updatedModel = await setDefaultModel(currentModel.id);
+                        const modelId = currentModel._id || currentModel.id;
+
+                        if (!modelId) {
+                          console.error('No model ID found:', currentModel);
+                          return;
+                        }
+
+                        console.log('Setting default model:', modelId);
+
+                        const updatedModel = await setDefaultModel(modelId);
 
                         setModel(updatedModel);
                       } catch (error) {
-                        console.error('Failed to set default model:', error);
+                        console.error(
+                          'Failed to set default model:',
+                          error.response?.data || error
+                        );
                       }
                     }}
                     className={`rounded-xl px-5 py-2.5 font-medium transition ${

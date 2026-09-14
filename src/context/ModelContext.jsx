@@ -469,21 +469,33 @@ export function ModelProvider({
 
   const setDefaultModel = async (modelId) => {
     try {
+      if (!modelId) {
+        throw new Error('Model ID is missing.');
+      }
+
       const response = await api.patch(
         `/admin/models/${modelId}/default`
       );
 
-      const updatedModel =
-        response.data?.data?.model;
+      const updatedModel = response.data?.data?.model;
 
-      // Refresh models after changing default
-      await loadModels();
+      if (!updatedModel) {
+        throw new Error('Updated model was not returned by the server.');
+      }
 
-      return updatedModel;
+      setModels((currentModels) =>
+        currentModels.map((item) => ({
+          ...item,
+          isDefault:
+            String(item._id || item.id) === String(modelId),
+        }))
+      );
+
+      return normalizeModel(updatedModel);
     } catch (error) {
       console.error(
-        "Failed to set default model:",
-        error
+        'Failed to set default model:',
+        error.response?.data || error
       );
 
       throw error;
