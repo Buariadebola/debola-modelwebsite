@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   ImagePlus,
+  LogOut,
   MessageSquareText,
   UserRound,
 } from 'lucide-react';
@@ -62,19 +63,13 @@ const AdminPage = () => {
               Quick access
             </p>
           </div>
-
-          <Link
-            to="/admin/messages"
-            className="inline-flex items-center gap-2 rounded-full border border-[#f0dff1] bg-white px-4 py-2 text-sm font-medium text-[#5a3658] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#fff6fb]"
-          >
-            Open messages
-            <ArrowRight size={16} />
-          </Link>
           <button
             type="button"
             onClick={logout}
             className="inline-flex items-center gap-2 rounded-full border border-[#f0dff1] bg-white px-4 py-2 text-sm font-medium text-[#5a3658] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#fff6fb]"
           >
+            Logout
+            <LogOut />
           </button>
         </div>
 
