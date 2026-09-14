@@ -251,13 +251,13 @@ export default function AdminModelProfile() {
                     }}
                     className={`rounded-xl px-5 py-2.5 font-medium transition ${
                       currentModel.isDefault
-                        ? 'cursor-default bg-emerald-100 text-emerald-700'
-                        : 'bg-[#311a32] text-white hover:bg-[#4a2349]'
+                        ? 'cursor-default bg-red-500 text-white'
+                        : 'bg-pink-400 text-white hover:bg-pink-300'
                     }`}
                   >
                     {currentModel.isDefault
-                      ? 'Current Default'
-                      : 'Make Default'}
+                      ? 'Deactivate'
+                      : 'Activate'}
                   </button>
 
                   <button
