@@ -3,7 +3,7 @@ export default function EmptyChat({
   description = 'Choose a conversation to start messaging.',
 }) {
   return (
-    <div className="flex h-full min-h-[280px] items-center justify-center bg-pink-900 p-8 text-center">
+    <div className="flex h-full min-h-[280px] items-center justify-center bg-pink-950 p-8 text-center">
       <div className="max-w-sm">
         <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center border border-pink-600 bg-pink-950">
           <span className="h-2 w-2 rounded-full bg-pink-600 shadow-[0_0_14px_rgba(128,84,149,0.55)]" />

@@ -27,7 +27,7 @@ export default function ChatWindow({
 
   if (!messages.length) {
     return (
-      <div className="flex h-full flex-col justify-center bg-pink-800">
+      <div className="flex h-full flex-col justify-center bg-pink-950">
         <EmptyChat
           title="Start a conversation"
           description="Send a message to begin your conversation."
