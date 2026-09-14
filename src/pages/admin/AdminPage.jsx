@@ -69,7 +69,7 @@ const AdminPage = () => {
             className="inline-flex items-center gap-2 rounded-full border border-[#f0dff1] bg-white px-4 py-2 text-sm font-medium text-[#5a3658] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#fff6fb]"
           >
             Logout
-            <LogOut />
+            <LogOut size={16} />
           </button>
         </div>
 
