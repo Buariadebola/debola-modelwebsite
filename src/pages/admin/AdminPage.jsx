@@ -3,9 +3,9 @@ import {
   ArrowRight,
   ImagePlus,
   MessageSquareText,
-  Sparkles,
   UserRound,
 } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 const cards = [
   {
@@ -32,6 +32,9 @@ const cards = [
 ];
 
 const AdminPage = () => {
+
+  const { logout } = useAuth();
+  
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(244,114,182,0.18),_transparent_30%),linear-gradient(135deg,#fffafc_0%,#fdf2ff_35%,#f6ecff_100%)] px-4 py-8 text-[#311a32] sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -50,12 +53,6 @@ const AdminPage = () => {
                 Manage model profiles, create new portfolios, and respond to client conversations from one elegant studio workspace.
               </p>
             </div>
-
-            <div className="flex items-center justify-end">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[linear-gradient(135deg,#f472b6,#8b5cf6)] text-white shadow-[0_18px_38px_rgba(168,104,185,0.30)]">
-                <Sparkles className="h-9 w-9" />
-              </div>
-            </div>
           </div>
         </div>
 
@@ -73,6 +70,12 @@ const AdminPage = () => {
             Open messages
             <ArrowRight size={16} />
           </Link>
+          <button
+            type="button"
+            onClick={logout}
+            className="inline-flex items-center gap-2 rounded-full border border-[#f0dff1] bg-white px-4 py-2 text-sm font-medium text-[#5a3658] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#fff6fb]"
+          >
+          </button>
         </div>
 
         <div className="grid gap-5 md:grid-cols-3">

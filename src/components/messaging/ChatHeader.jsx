@@ -1,4 +1,4 @@
-import { ArrowLeft, LogOut, MoreHorizontal } from 'lucide-react';
+import { ArrowLeft, LogOut } from 'lucide-react';
 import OnlineStatus from './OnlineStatus';
 import { FaUserCircle } from 'react-icons/fa';
 import { Navigate } from 'react-router-dom';
