@@ -28,7 +28,7 @@ const { isAuthenticated, logout } = useAuth();
           <button
             type="button"
             onClick={onBack}
-            className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#51465a] bg-[#2a2430] text-[#c1b5c6] transition hover:border-[#a77abf]/60 hover:bg-[#342b3a] hover:text-white lg:hidden"
+            className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#51465a] bg-[#2a2430] text-[#c1b5c6] transition hover:border-[#a77abf]/60 hover:bg-[#342b3a] hover:text-white"
             aria-label="Go back"
           >
             <ArrowLeft
