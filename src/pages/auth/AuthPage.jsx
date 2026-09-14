@@ -594,7 +594,7 @@ function FormInput({
           type="button"
           aria-label={showPassword ? "Hide password" : "Show password"}
           onClick={() => setShowPassword((previous) => !previous)}
-          className="absolute inset-y-0 right-0 flex items-center px-3 text-pink-300 transition-colors hover:text-pink-500 focus:outline-none"
+          className="absolute inset-y-0 right-0 top-1/2 flex items-center px-3 text-pink-300 transition-colors hover:text-pink-500 focus:outline-none"
         >
           {showPassword ? (
             <FaEyeSlash className="h-5 w-5" />
