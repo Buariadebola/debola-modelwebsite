@@ -227,23 +227,12 @@ export default function AdminModelProfile() {
                 <div className="flex flex-wrap items-center gap-3">
                   <button
                     type="button"
-                    disabled={currentModel.isDefault}
+                    disabled={Boolean(currentModel.isDefault)}
                     onClick={async () => {
                       try {
                         const updatedModel = await setDefaultModel(currentModel.id);
 
-                        if (updatedModel) {
-                          setModel(normalizeModel(updatedModel));
-                        } else {
-                          setModel((prev) =>
-                            prev
-                              ? {
-                                  ...prev,
-                                  isDefault: true,
-                                }
-                              : prev
-                          );
-                        }
+                        setModel(updatedModel);
                       } catch (error) {
                         console.error('Failed to set default model:', error);
                       }
