@@ -12,8 +12,10 @@ import {
   UserRound,
   Sparkles,
   Heart,
+  Eye,
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
+import { FaEyeSlash } from "react-icons/fa";
 
 const initialState = {
   name: "",
@@ -32,6 +34,7 @@ export default function AuthPage({ mode = "login" }) {
   const [form, setForm] = useState(initialState);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const isAdminMode = location.pathname.startsWith("/admin");
   const finalMode = isAdminMode ? "admin-login" : mode;
@@ -425,6 +428,8 @@ export default function AuthPage({ mode = "login" }) {
                   value={form.password}
                   onChange={handleChange}
                   placeholder="••••••••"
+                  setShowPassword={setShowPassword}
+                  showPassword={showPassword}
                 />
 
                 {/* Error */}
@@ -564,16 +569,18 @@ function FormInput({
   value,
   onChange,
   placeholder,
+  setShowPassword,
+  showPassword
 }) {
   return (
-    <div className="group">
+    <div className="group relative">
 
       <label className="mb-1.5 block text-[8px] font-semibold uppercase tracking-[0.2em] text-[#a6758d]">
         {label}
       </label>
 
       <input
-        type={type}
+        type={type === "password" && showPassword ? "text" : type}
         name={name}
         value={value}
         onChange={onChange}
@@ -582,6 +589,20 @@ function FormInput({
         className="h-11 w-full rounded-xl border border-[#efdde7] bg-[#fffafd] px-3.5 text-xs text-[#4b2940] outline-none transition duration-300 placeholder:text-[#d5b7c6] focus:border-[#d990b3] focus:bg-white focus:shadow-[0_6px_20px_rgba(214,136,176,0.1)]"
       />
 
+      {type === "password" && (
+        <button
+          type="button"
+          aria-label={showPassword ? "Hide password" : "Show password"}
+          onClick={() => setShowPassword((previous) => !previous)}
+          className="absolute inset-y-0 right-0 flex items-center px-3 text-pink-300 transition-colors hover:text-pink-500 focus:outline-none"
+        >
+          {showPassword ? (
+            <FaEyeSlash className="h-5 w-5" />
+          ) : (
+            <Eye className="h-5 w-5" />
+          )}
+        </button>
+      )}
     </div>
   );
 }
