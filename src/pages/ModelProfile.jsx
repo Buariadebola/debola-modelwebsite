@@ -93,8 +93,6 @@ export default function ModelProfile() {
   const [model, setModel] = useState(null);
   const [activeTab, setActiveTab] = useState('posts');
   const [selectedPost, setSelectedPost] = useState(null);
-  const [caption, setCaption] = useState('');
-  const [preview, setPreview] = useState(null);
 
   const { isAuthenticated, logout } = useAuth();
   const { getTotalModelLikes, likePost, unlikePost } = useModels();
@@ -221,21 +219,6 @@ export default function ModelProfile() {
       </div>
     );
   }
-
-  const handleFileChange = (event) => {
-    const file = event.target.files?.[0];
-
-    if (!file) return;
-
-    const mediaType = file.type.startsWith('video/')
-      ? 'video'
-      : 'image';
-
-    setPreview({
-      url: URL.createObjectURL(file),
-      type: mediaType,
-    });
-  };
 
   return (
     <div className="min-h-screen bg-pink-100 text-[#8f3f60]">

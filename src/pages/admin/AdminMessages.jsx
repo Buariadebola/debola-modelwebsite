@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { Navigate } from 'react-router-dom';
-import { Loader2, LogOut } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 
 import ChatHeader from '../../components/messaging/ChatHeader';
 import ChatWindow from '../../components/messaging/ChatWindow';
@@ -11,7 +11,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useMessaging } from '../../hooks/useMessaging';
 
 export default function AdminMessages() {
-  const { user, isAuthenticated, loading: authLoading, logout } = useAuth();
+  const { user, isAuthenticated, loading: authLoading } = useAuth();
 
   const {
     conversations,
