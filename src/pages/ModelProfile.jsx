@@ -345,15 +345,6 @@ export default function ModelProfile() {
                 </p>
 
                 <div className="mt-5 flex flex-wrap items-center gap-2">
-                  {(model.category || []).map((category) => (
-                    <span
-                      key={category}
-                      className="border border-[#edc4d3] bg-[#fce7f0] px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-[#a65375]"
-                    >
-                      {category}
-                    </span>
-                  ))}
-
                   {model.location && (
                     <span className="ml-1 flex items-center gap-2 text-xs text-[#a47789]">
                       <MapPin
@@ -508,14 +499,6 @@ export default function ModelProfile() {
                 <InfoRow
                   label="Location"
                   value={model.location || 'Not specified'}
-                />
-
-                <InfoRow
-                  label="Categories"
-                  value={
-                    (model.category || []).join(', ') ||
-                    'Not specified'
-                  }
                 />
 
                 <InfoRow
